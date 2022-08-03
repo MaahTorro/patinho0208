@@ -37,8 +37,8 @@ app.get('/', async(req,res)=>{
 app.use(urlencoded({extended:false}))
 
 app.post('/', async(req,res)=>{
-    const dados = req.body
-    res.send(dados)
+    const { body } = req;
+    res.send(body);
 })
 
 //ligar o servidor na porta 3050
