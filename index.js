@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 
 //conectar com o banco de dados revisao
 const conexao = ()=>{
-    mongoose.connect('mongodb+srv://userRevisao:230205@fiaptec.n8xny.mongodb.net/test')
+    mongoose.connect('mongodb+srv://userRevisao:230205@fiaptec.n8xny.mongodb.net/revisao')
 }
 
 //conectar com a collection infos
@@ -38,9 +38,17 @@ app.use(urlencoded({extended:false}))
 
 app.post('/', async(req,res)=>{
     const { body } = req;
-    res.send(body);
+//    res.send(body);
+    //res.send(dados)
+    const gravar = new infos ({
+    nome:body.nome,
+    turma:body.turma,
+    disciplina:body.disciplina
+}).save()
+res.redirect('/')
 })
 
+const porta = process.env.PORT || 3050
 //ligar o servidor na porta 3050
 app.listen(3050, ()=>{
     console.log('Servidor local em http://localhost:3050/')
